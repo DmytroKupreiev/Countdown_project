@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Countdown"
+             x:Class="Countdown.GamePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F5F5F5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LetterBox">#FFA500</Color>
+            <Color x:Key="TimerBox">#808080</Color>
+            <x:Double x:Key="BoxSize">100</x:Double>
+
+            <Style x:Key="SquareStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource LetterBox}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="7"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HasShadow" Value="False"/>
+            </Style>
+
+            <Style x:Key="AdaptiveFrameMargin" TargetType="Frame">
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0, 2, 0, 2"/>
+                            <On Platform="UWP" Value="0, 5, 0, 5"/>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="AdaptiveButtonPadding" TargetType="Button">
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="27, 5, 0, 0"/>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="AdaptiveButtonPadding_s" TargetType="Button">
+            <Setter Property="Padding">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="Android" Value="10, 5, 0, 0"/>
+                    </OnPlatform>
+                </Setter.Value>
+            </Setter>
+            </Style>
+        
+            <Style x:Key="AdaptiveButtonMargin" TargetType="Button">
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0, 2, 0, 2"/>
+                            <On Platform="UWP" Value="0, 5, 0, 5"/>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="AdaptiveFlexLayoutMargin" TargetType="FlexLayout">
+                <Setter Property="Margin">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="0, 2, 1, 4"/>
+                            <On Platform="UWP" Value="0, 5, 3, 10"/>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="AdaptiveFramePadding" TargetType="Frame">
+                <Setter Property="Padding">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="10, 5, 10, 5"/>
+                            <On Platform="UWP" Value="10, 0, 10, 0"/>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <StackLayout Orientation="Vertical">
+
+        <Grid x:Name="MainGrid">
+            <Grid x:Name="SquaresGrid"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Center">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame x:Name="Letter_1" Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="A" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_2" Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="B" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_3" Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="C" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_4" Grid.Row="0" Grid.Column="3" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="D" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_5" Grid.Row="0" Grid.Column="4" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="E" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_6" Grid.Row="0" Grid.Column="5" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="F" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_7" Grid.Row="0" Grid.Column="6" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="G" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_8" Grid.Row="0" Grid.Column="7" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="H" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+
+                <Frame x:Name="Letter_9" Grid.Row="0" Grid.Column="8" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label Text="I" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                </Frame>
+            </Grid>
+        </Grid>
+
+        <StackLayout x:Name="ControllerBlock"
+                     Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="EndAndExpand"
+                     Spacing="30">
+
+
+            <Frame BackgroundColor="LightSlateGray"
+                   CornerRadius="15"
+                   Style="{StaticResource AdaptiveFramePadding}"
+                   WidthRequest="200"
+                   HeightRequest="300">
+                <FlexLayout Direction="Column"
+                    JustifyContent="SpaceBetween">
+
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="False"
+                           Style="{StaticResource AdaptiveFrameMargin}"
+                           FlexLayout.Basis="25%">
+                        <Label Text="Player first" 
+                               TextColor="Black" 
+                               HorizontalOptions="Center" 
+                               FontSize="20"/>
+                    </Frame>
+
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="False"
+                           Style="{StaticResource AdaptiveFrameMargin}"
+                           FlexLayout.Basis="25%">
+                        <Label Text="46 Points" 
+                               TextColor="Black" 
+                               HorizontalOptions="Center" 
+                               FontSize="16"/>
+                    </Frame>
+
+
+                    <FlexLayout Direction="Row" 
+                                JustifyContent="SpaceBetween"
+                                AlignItems="Stretch"
+                                Style="{StaticResource AdaptiveFlexLayoutMargin}"         
+                                FlexLayout.Basis="25%">
+
+                        <Button Text="Vowel" 
+                                FontSize="16"
+                                BackgroundColor="LightGray"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                FlexLayout.Basis="50%"
+                                Style="{StaticResource AdaptiveButtonPadding}"
+                                Margin="0,0,5,0"/>
+                        <Button Text="Consonant" 
+                                FontSize="16"
+                                BackgroundColor="LightGray"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                FlexLayout.Basis="50%"
+                                Style="{StaticResource AdaptiveButtonPadding_s}"
+                                Margin="5,0,0,0"/>
+
+                    </FlexLayout>
+
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="0"
+                           HasShadow="False"
+                           FlexLayout.Basis="25%"
+                           Style="{StaticResource AdaptiveFrameMargin}">
+                        <Entry Placeholder="Enter a word" 
+                               BackgroundColor="White"
+                               TextColor="Black"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="10,0"/>
+                    </Frame>
+                </FlexLayout>
+            </Frame>
+
+
+            <Frame BackgroundColor="LightSlateGray"
+                   CornerRadius="15"
+                   Style="{StaticResource AdaptiveFramePadding}"
+                   WidthRequest="200"
+                   HeightRequest="300">
+                <FlexLayout Direction="Column"
+                            JustifyContent="SpaceBetween">
+
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="False"
+                           Style="{StaticResource AdaptiveFrameMargin}"
+                           FlexLayout.Basis="25%">
+                        <Label Text="Player second" 
+                               TextColor="Black" 
+                               HorizontalOptions="Center" 
+                               FontSize="20"/>
+                    </Frame>
+
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="False"
+                           Style="{StaticResource AdaptiveFrameMargin}"
+                           FlexLayout.Basis="25%">
+                        <Label Text="15 Points" 
+                               TextColor="Black" 
+                               HorizontalOptions="Center" 
+                               FontSize="16"/>
+                    </Frame>
+
+
+                    <FlexLayout Direction="Row" 
+                                JustifyContent="SpaceBetween"
+                                AlignItems="Stretch"
+                                Style="{StaticResource AdaptiveFlexLayoutMargin}"         
+                                FlexLayout.Basis="25%"  >
+
+                        <Button x:Name="Button_vowel_1" 
+                                Text="Vowel" 
+                                FontSize="16"
+                                BackgroundColor="LightGray"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                FlexLayout.Basis="50%"
+                                Style="{StaticResource AdaptiveButtonPadding}"
+                                Margin="0,0,5,0"/>
+                        <Button Text="Consonant" 
+                                BackgroundColor="LightGray"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                FlexLayout.Basis="50%"
+                                FontSize="16"
+                                Style="{StaticResource AdaptiveButtonPadding_s}"
+                                Margin="5,0,0,0"/>
+
+                    </FlexLayout>
+
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="0"
+                           HasShadow="False"
+                           FlexLayout.Basis="25%"
+                           Style="{StaticResource AdaptiveFrameMargin}">
+                        <Entry Placeholder="Enter a word" 
+                               BackgroundColor="White"
+                               TextColor="Black"
+                               HorizontalOptions="FillAndExpand"
+                               Margin="10,0"/>
+                    </Frame>
+                </FlexLayout>
+            </Frame>
+
+            <Frame BackgroundColor="LightSlateGray"
+                   Style="{StaticResource AdaptiveFramePadding}"
+                   CornerRadius="15">
+
+                <FlexLayout Direction="Column"
+                            JustifyContent="SpaceBetween"
+                            AlignItems="Stretch">
+
+                    <Frame BackgroundColor="White"
+                            CornerRadius="10"
+                            Style="{StaticResource AdaptiveFrameMargin}"
+                            HasShadow="False"
+                            FlexLayout.Basis="20%"
+                            Padding="10"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+                        <Label Text="Round 2"
+                                TextColor="Black"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                FontSize="20"/>
+                    </Frame>
+
+                   
+                    <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           HasShadow="False"
+                           Style="{StaticResource AdaptiveFrameMargin}"
+                           FlexLayout.Basis="60%"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand">
+                    
+                    </Frame>
+
+                 
+                    <Button Text="Start round"
+                            BackgroundColor="LightGray"
+                            FlexLayout.Basis="20%"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Style="{StaticResource AdaptiveButtonMargin}"
+                            TextColor="Black"
+                            FontSize="16"
+                            Padding="0, 0, 0, 2"
+                            />
+
+                </FlexLayout>
+            </Frame>
+
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>
