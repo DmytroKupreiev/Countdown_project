@@ -1,21 +1,53 @@
+using Countdown.Common.Dictionary;
+using Countdown.Common.GameData;
+
 namespace Countdown;
 
 public partial class GamePage : ContentPage
 {
-	public GamePage()
+    private GameModel _model;
+    private GameView _view;
+
+	public GamePage(GameSettings settings,
+                    GameDictionary dictionary,
+                    GameAlphabet alphabet)
 	{
 		InitializeComponent();
-	}
 
-	private async void OnHomeButtonClicked(object sender, EventArgs e)
-	{
-        await Navigation.PopAsync();
+        _model = new GameModel(settings, dictionary, alphabet);
+        _view = new GameView(this, settings);
+
+        _view.OnGameEntered();
     }
 
-    protected override void OnAppearing()
+    private async void OnStartRoundEvent(object sender, EventArgs e)
     {
-        base.OnAppearing();
-        ForceLayout();
+        _view.ChangePlayer();
+        
+        string f = FirstPlayerInput.Text;
+        string s = SecondPlayerInput.Text;
+
+        string message = _model.EvaluateWinner(f, s);
+        await DisplayAlert("Title", message, "OK");
+
+        _model.UpdateAlphabet();
+        _model.NextTurn();
+    }
+
+    private void OnVowelChoose(object sender, EventArgs e)
+    {
+        if (_model.IsMaxCountLetters()) return;
+
+        (char Letter, int Index) letterInfo = _model.GetLetter("vowel");
+        _view.ChangeLetter(letterInfo.Letter, letterInfo.Index);
+    }
+
+    private void OnConsonantChoose(object sender, EventArgs e)
+    {
+        if (_model.IsMaxCountLetters()) return;
+
+        (char Letter, int Index) letterInfo = _model.GetLetter("consonant");
+        _view.ChangeLetter(letterInfo.Letter, letterInfo.Index);
     }
 
     protected override void OnSizeAllocated(double width, double height)

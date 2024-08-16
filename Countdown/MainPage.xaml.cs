@@ -15,7 +15,7 @@
         private async void OnPlayButtonClicked(object sender, EventArgs e)
         {
             await this.FadeTo(0, 250);
-            await Navigation.PushAsync(new GamePage());
+            await Navigation.PushAsync(new GameSettingsPage());
         }
 
         private void OnSettingsButtonClicked(object sender, EventArgs e)

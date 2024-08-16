@@ -111,40 +111,40 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Frame x:Name="Letter_1" Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="A" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_1" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_2" Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="B" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_2" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_3" Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="C" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_3" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_4" Grid.Row="0" Grid.Column="3" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="D" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame  Grid.Row="0" Grid.Column="3" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_4" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_5" Grid.Row="0" Grid.Column="4" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="E" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="4" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_5" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_6" Grid.Row="0" Grid.Column="5" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="F" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="5" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_6" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_7" Grid.Row="0" Grid.Column="6" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="G" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="6" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_7" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_8" Grid.Row="0" Grid.Column="7" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="H" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="7" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_8" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <Frame x:Name="Letter_9" Grid.Row="0" Grid.Column="8" Style="{StaticResource SquareStyle}" HasShadow="False">
-                    <Label Text="I" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Frame Grid.Row="0" Grid.Column="8" Style="{StaticResource SquareStyle}" HasShadow="False">
+                    <Label x:Name="Letter_9" Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </Frame>
             </Grid>
         </Grid>
@@ -170,7 +170,9 @@
                            HasShadow="False"
                            Style="{StaticResource AdaptiveFrameMargin}"
                            FlexLayout.Basis="25%">
-                        <Label Text="Player first" 
+                        <Label x:Name="FirstPlayerName" 
+                               x:FieldModifier="Public"
+                               Text="Player first" 
                                TextColor="Black" 
                                HorizontalOptions="Center" 
                                FontSize="20"/>
@@ -182,7 +184,10 @@
                            HasShadow="False"
                            Style="{StaticResource AdaptiveFrameMargin}"
                            FlexLayout.Basis="25%">
-                        <Label Text="46 Points" 
+
+                        <Label x:Name="FirstPlayerPoints"
+                               x:FieldModifier="Public"
+                               Text="0 Points" 
                                TextColor="Black" 
                                HorizontalOptions="Center" 
                                FontSize="16"/>
@@ -195,22 +200,29 @@
                                 Style="{StaticResource AdaptiveFlexLayoutMargin}"         
                                 FlexLayout.Basis="25%">
 
-                        <Button Text="Vowel" 
+                        <Button x:Name="FirstPlayerVowel"
+                                x:FieldModifier="Public"
+                                Text="Vowel" 
                                 FontSize="16"
                                 BackgroundColor="LightGray"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
                                 Style="{StaticResource AdaptiveButtonPadding}"
-                                Margin="0,0,5,0"/>
-                        <Button Text="Consonant" 
+                                Margin="0,0,5,0"
+                                Clicked="OnVowelChoose"/>
+                        
+                        <Button x:Name="FirstPlayerConsonant" 
+                                x:FieldModifier="Public"
+                                Text="Consonant" 
                                 FontSize="16"
                                 BackgroundColor="LightGray"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
                                 Style="{StaticResource AdaptiveButtonPadding_s}"
-                                Margin="5,0,0,0"/>
+                                Margin="5,0,0,0"
+                                Clicked="OnConsonantChoose"/>
 
                     </FlexLayout>
 
@@ -220,7 +232,10 @@
                            HasShadow="False"
                            FlexLayout.Basis="25%"
                            Style="{StaticResource AdaptiveFrameMargin}">
-                        <Entry Placeholder="Enter a word" 
+
+                        <Entry x:Name="FirstPlayerInput"
+                               x:FieldModifier="Public"
+                               Placeholder="Enter a word" 
                                BackgroundColor="White"
                                TextColor="Black"
                                HorizontalOptions="FillAndExpand"
@@ -235,6 +250,7 @@
                    Style="{StaticResource AdaptiveFramePadding}"
                    WidthRequest="200"
                    HeightRequest="300">
+                
                 <FlexLayout Direction="Column"
                             JustifyContent="SpaceBetween">
 
@@ -244,7 +260,10 @@
                            HasShadow="False"
                            Style="{StaticResource AdaptiveFrameMargin}"
                            FlexLayout.Basis="25%">
-                        <Label Text="Player second" 
+
+                        <Label x:Name="SecondPlayerName" 
+                               x:FieldModifier="Public"
+                               Text="Player second" 
                                TextColor="Black" 
                                HorizontalOptions="Center" 
                                FontSize="20"/>
@@ -256,7 +275,10 @@
                            HasShadow="False"
                            Style="{StaticResource AdaptiveFrameMargin}"
                            FlexLayout.Basis="25%">
-                        <Label Text="15 Points" 
+
+                        <Label x:Name="SecondPlayerPoints"
+                               x:FieldModifier="Public"
+                               Text="0 Points" 
                                TextColor="Black" 
                                HorizontalOptions="Center" 
                                FontSize="16"/>
@@ -269,7 +291,8 @@
                                 Style="{StaticResource AdaptiveFlexLayoutMargin}"         
                                 FlexLayout.Basis="25%"  >
 
-                        <Button x:Name="Button_vowel_1" 
+                        <Button x:Name="SecondPlayerVowel" 
+                                x:FieldModifier="Public"
                                 Text="Vowel" 
                                 FontSize="16"
                                 BackgroundColor="LightGray"
@@ -277,15 +300,20 @@
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
                                 Style="{StaticResource AdaptiveButtonPadding}"
-                                Margin="0,0,5,0"/>
-                        <Button Text="Consonant" 
+                                Margin="0,0,5,0"
+                                Clicked="OnVowelChoose"/>
+
+                        <Button x:Name="SecondPlayerConsonant"
+                                x:FieldModifier="Public"
+                                Text="Consonant" 
                                 BackgroundColor="LightGray"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
                                 FontSize="16"
                                 Style="{StaticResource AdaptiveButtonPadding_s}"
-                                Margin="5,0,0,0"/>
+                                Margin="5,0,0,0"
+                                Clicked="OnConsonantChoose"/>
 
                     </FlexLayout>
 
@@ -295,7 +323,10 @@
                            HasShadow="False"
                            FlexLayout.Basis="25%"
                            Style="{StaticResource AdaptiveFrameMargin}">
-                        <Entry Placeholder="Enter a word" 
+
+                        <Entry x:Name="SecondPlayerInput"
+                               x:FieldModifier="Public"
+                               Placeholder="Enter a word" 
                                BackgroundColor="White"
                                TextColor="Black"
                                HorizontalOptions="FillAndExpand"
@@ -320,14 +351,16 @@
                             Padding="10"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
-                        <Label Text="Round 2"
-                                TextColor="Black"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                FontSize="20"/>
+
+                        <Label x:Name="RoundLabel"
+                               x:FieldModifier="Public"
+                               Text="Round 1"
+                               TextColor="Black"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="20"/>
                     </Frame>
 
-                   
                     <Frame BackgroundColor="White"
                            CornerRadius="10"
                            HasShadow="False"
@@ -335,11 +368,21 @@
                            FlexLayout.Basis="60%"
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="FillAndExpand">
-                    
+
+                        <Label x:Name="TimerLabel"
+                               x:FieldModifier="Public"
+                               TextColor="Black"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="25"
+                               Text="Timer"
+                               />
+
                     </Frame>
 
-                 
-                    <Button Text="Start round"
+                    <Button x:Name="StartRoundButton"
+                            x:FieldModifier="Public"
+                            Text="Start round"
                             BackgroundColor="LightGray"
                             FlexLayout.Basis="20%"
                             HorizontalOptions="FillAndExpand"
@@ -348,12 +391,11 @@
                             TextColor="Black"
                             FontSize="16"
                             Padding="0, 0, 0, 2"
-                            />
+                            Clicked="OnStartRoundEvent"/>
 
                 </FlexLayout>
             </Frame>
 
         </StackLayout>
-
     </StackLayout>
 </ContentPage>

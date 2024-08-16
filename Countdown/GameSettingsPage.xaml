@@ -2,11 +2,101 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Countdown.GameSettingsPage"
-             Title="GameSettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F5F5F5">
+
+
+
+        <Frame BackgroundColor="LightGray"
+               CornerRadius="15"
+               Padding="20, 5, 20, 5"
+               WidthRequest="600"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HeightRequest="{OnPlatform Android=340, WinUI=450}"
+               HasShadow="False">
+
+            <FlexLayout Direction="Column"
+                        JustifyContent="SpaceEvenly"
+                        AlignContent="SpaceEvenly"
+                        AlignItems="Stretch"
+                        Padding="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+
+                <Label Text="Game settings"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        HorizontalOptions="CenterAndExpand"
+                        
+                        BackgroundColor="Transparent"/>
+
+                <Entry x:Name="FirstPlayer"
+                       Placeholder="First player"
+                        Keyboard="Default"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"/>
+
+                <Entry x:Name="SecondPlayer" 
+                        Placeholder="Second player"
+                        Keyboard="Default"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"/>
+
+                <Entry x:Name="CountRounds" 
+                        Placeholder="Number of rounds"
+                        Keyboard="Numeric"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="White"/>
+
+                 <FlexLayout Direction="Row"
+                             HorizontalOptions="FillAndExpand"
+                             JustifyContent="SpaceBetween"
+                             AlignItems="Center"
+                             AlignContent="SpaceBetween"
+                             Margin="0, 10, 0, 0">
+
+                    <Picker x:Name="RoundTime"
+                            BackgroundColor="White"
+                            FlexLayout.Basis="47%">
+
+                         <Picker.Title>
+                             Round time
+                         </Picker.Title>
+
+                         <Picker.Items>
+                             <x:String>30</x:String>
+                             <x:String>60</x:String>
+                             <x:String>90</x:String>
+                         </Picker.Items>
+                     </Picker>
+
+                    <Picker x:Name="FirstTurn" 
+                            BackgroundColor="White"
+                            FlexLayout.Basis="47%">
+
+                         <Picker.Title>
+                             First turn
+                         </Picker.Title>
+
+                         <Picker.Items>
+                             <x:String>First player</x:String>
+                             <x:String>Second player</x:String>
+                             <x:String>Random</x:String>
+                         </Picker.Items>
+                     </Picker>
+
+                 </FlexLayout>
+
+                <Button 
+                        Text="Play"
+                        BackgroundColor="Gray"
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0, 15, 0, 0"
+                        Clicked="OnPlayButtonClicked"/>
+                
+            </FlexLayout>
+        </Frame>
+ 
 </ContentPage>

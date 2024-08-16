@@ -13,12 +13,9 @@ namespace Countdown.Common.Dictionary
             _dictionary = _dictLoader.GetDictionaryJson() ?? _dictLoader.GetDictionaryTxt();
         }
         
-
         public bool HasWord(string word)
         {
-            word = word.ToLower();
             return _dictionary[word.First()].Contains(word);
         }
-
     }
 }
