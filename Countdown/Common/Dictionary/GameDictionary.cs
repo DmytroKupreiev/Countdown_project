@@ -15,6 +15,9 @@ namespace Countdown.Common.Dictionary
         
         public bool HasWord(string word)
         {
+            if (word.Length == 0) return false;
+            if (!_dictionary.ContainsKey(word.First())) return false;
+
             return _dictionary[word.First()].Contains(word);
         }
     }

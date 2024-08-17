@@ -28,7 +28,6 @@
                         FontSize="24"
                         FontAttributes="Bold"
                         HorizontalOptions="CenterAndExpand"
-                        
                         BackgroundColor="Transparent"/>
 
                 <Entry x:Name="FirstPlayer"

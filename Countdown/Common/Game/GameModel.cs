@@ -7,7 +7,23 @@ public class GameModel
     private GameDictionary _gameDictionary;
     private GameAlphabet _alphabet;
 
+    public event Action? OnStartTimer;
+
     private int _countLetter = 0;
+    private int CountLetter
+    {
+        set
+        {
+            if (value >= 9)
+            {
+                OnStartTimer?.Invoke();
+            }
+
+            _countLetter = value;
+        }
+
+        get => _countLetter;
+    }
 
     public GameModel(GameSettings settings, 
                      GameDictionary gameDictionary,
@@ -22,8 +38,8 @@ public class GameModel
     {
         return type switch
         {
-            "vowel" => (_alphabet.NextVowel(), _countLetter++),
-            "consonant" => (_alphabet.NextConsonant(), _countLetter++),
+            "vowel" => (_alphabet.NextVowel(), CountLetter++),
+            "consonant" => (_alphabet.NextConsonant(), CountLetter++),
             _ => throw new ArgumentException()
         };
     }
@@ -31,11 +47,6 @@ public class GameModel
     public bool IsMaxCountLetters()
     {
         return _countLetter >= 9;
-    }
-
-    public void UpdateCountLetters()
-    {
-        _countLetter = 0;
     }
 
     public void UpdateAlphabet()
@@ -46,12 +57,13 @@ public class GameModel
     public void NextTurn()
     {
         _settings.NextTurn();
+        CountLetter = 0;
     }
 
     public string EvaluateWinner(string firstPlayerWord, string secondPlayerWord)
     {
-        firstPlayerWord = firstPlayerWord.Trim().ToLower();
-        secondPlayerWord = secondPlayerWord.Trim().ToLower();
+        firstPlayerWord = firstPlayerWord.Trim().ToLower() ?? " ";
+        secondPlayerWord = secondPlayerWord.Trim().ToLower() ?? " ";
 
         bool isValidLetters_f = _alphabet.IsValidLetters(firstPlayerWord);
         bool isValidLetters_s = _alphabet.IsValidLetters(secondPlayerWord);

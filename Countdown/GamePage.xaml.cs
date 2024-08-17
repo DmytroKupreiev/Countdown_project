@@ -7,6 +7,7 @@ public partial class GamePage : ContentPage
 {
     private GameModel _model;
     private GameView _view;
+    private CountdownTimer _timer;
 
 	public GamePage(GameSettings settings,
                     GameDictionary dictionary,
@@ -16,20 +17,31 @@ public partial class GamePage : ContentPage
 
         _model = new GameModel(settings, dictionary, alphabet);
         _view = new GameView(this, settings);
+        _timer = new CountdownTimer(settings.RoundTime);
+
+        _model.OnStartTimer += _timer.Start;
+        _model.OnStartTimer += _view.DisableAllButtons;
+        _timer.OnTimeChanged += _view.OnChangeTimer;
+        _timer.OnTimerFinished += RoundResultEvaluate;
 
         _view.OnGameEntered();
     }
 
-    private async void OnStartRoundEvent(object sender, EventArgs e)
+    private void RoundResultEvaluate()
+    {   
+        string firstWord = FirstPlayerInput.Text ?? "";
+        string secondWord = SecondPlayerInput.Text ?? "";
+
+        string message = _model.EvaluateWinner(firstWord, secondWord);
+        _view.ShowResult(message);
+        _view.EnableStartRoundButton(true);
+    }
+
+    private void OnStartRoundEvent(object sender, EventArgs e)
     {
+        _view.EnableStartRoundButton(false);
         _view.ChangePlayer();
-        
-        string f = FirstPlayerInput.Text;
-        string s = SecondPlayerInput.Text;
-
-        string message = _model.EvaluateWinner(f, s);
-        await DisplayAlert("Title", message, "OK");
-
+        _view.Clear();
         _model.UpdateAlphabet();
         _model.NextTurn();
     }
@@ -48,6 +60,14 @@ public partial class GamePage : ContentPage
 
         (char Letter, int Index) letterInfo = _model.GetLetter("consonant");
         _view.ChangeLetter(letterInfo.Letter, letterInfo.Index);
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        _view.EnableFirstPlayerButtons(false);
+        _view.EnableSecondPlayerButtons(false);
     }
 
     protected override void OnSizeAllocated(double width, double height)

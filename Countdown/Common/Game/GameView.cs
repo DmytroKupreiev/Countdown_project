@@ -1,6 +1,7 @@
 ﻿using Countdown;
 using Countdown.Common.GameData;
 
+
 public class GameView
 {
     private GamePage _page;
@@ -29,12 +30,16 @@ public class GameView
         _page.FindByName<Label>($"Letter_{index + 1}").Text = letter.ToString()
                                                                     .ToUpper();
     }
-    public void CleareLetters()
+
+    public void Clear()
     {
         for (int i = 0; i < 9; i++)
         {
             ChangeLetter(' ', i);
         }
+
+        _page.FirstPlayerInput.Text = "";
+        _page.SecondPlayerInput.Text = "";
     }
 
     public void ChangePlayer()
@@ -42,7 +47,7 @@ public class GameView
         if (_settings.CurrentTurn == Turn.FirstPlayer)
         {
             EnableFirstPlayerButtons(true);
-            EnableFirstPlayerButtons(false);
+            EnableSecondPlayerButtons(false);
         }
         else
         {
@@ -58,21 +63,29 @@ public class GameView
         EnableStartRoundButton(false);
     }
 
-    private void EnableFirstPlayerButtons(bool enable)
+    public void EnableFirstPlayerButtons(bool enable)
     {
         _page.FirstPlayerVowel.IsEnabled = enable;
         _page.FirstPlayerConsonant.IsEnabled = enable;
     }
 
-    private void EnableSecondPlayerButtons(bool enable)
+    public void EnableSecondPlayerButtons(bool enable)
     {
         _page.SecondPlayerVowel.IsEnabled = enable;
         _page.SecondPlayerConsonant.IsEnabled = enable;
     }
 
-    private void EnableStartRoundButton(bool enable)
+    public void EnableStartRoundButton(bool enable)
     {
         _page.StartRoundButton.IsEnabled = enable;
+    }
+
+    public async void ShowResult(string message)
+    {
+        _page.FirstPlayerPoints.Text = _settings.FirstPlayer.Points.ToString();
+        _page.SecondPlayerPoints.Text = _settings.SecondPlayer.Points.ToString();
+
+        await _page.DisplayAlert("Game result", message, "OK");
     }
 }
 
