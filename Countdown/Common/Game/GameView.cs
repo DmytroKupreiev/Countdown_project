@@ -20,6 +20,33 @@ public class GameView
         _page.SecondPlayerName.Text = _settings.SecondPlayer.Name;
     }
 
+    public void StartRound()
+    {
+        EnableStartRoundButton(false);
+        ChangePlayer();
+        Clear();
+    }
+
+    public void RoundLabelUpdate(int round)
+    {
+        _page.RoundLabel.Text = $"Round {round.ToString()}";
+    }
+
+    public void RestartButton()
+    {
+        _page.StartRoundButton.Text = "Restart";
+    }
+
+    public void Restart()
+    {
+        UpdatePoints();
+    }
+
+    public void FirstRound()
+    {
+        _page.StartRoundButton.Text = "Start";
+    }
+
     public void OnChangeTimer(int seconds)
     {
         _page.TimerLabel.Text = seconds.ToString();
@@ -29,7 +56,7 @@ public class GameView
     {
         _page.FindByName<Label>($"Letter_{index + 1}").Text = letter.ToString()
                                                                     .ToUpper();
-    }
+    }  
 
     public void Clear()
     {
@@ -40,6 +67,7 @@ public class GameView
 
         _page.FirstPlayerInput.Text = "";
         _page.SecondPlayerInput.Text = "";
+        _page.TimerLabel.Text = _settings.RoundTime.ToString();
     }
 
     public void ChangePlayer()
@@ -82,10 +110,14 @@ public class GameView
 
     public async void ShowResult(string message)
     {
+        UpdatePoints();
+        await _page.DisplayAlert("Game result", message, "OK");
+    }
+
+    private void UpdatePoints()
+    {
         _page.FirstPlayerPoints.Text = _settings.FirstPlayer.Points.ToString();
         _page.SecondPlayerPoints.Text = _settings.SecondPlayer.Points.ToString();
-
-        await _page.DisplayAlert("Game result", message, "OK");
     }
 }
 

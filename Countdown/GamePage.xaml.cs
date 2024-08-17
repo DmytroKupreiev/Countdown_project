@@ -29,8 +29,8 @@ public partial class GamePage : ContentPage
 
     private void RoundResultEvaluate()
     {   
-        string firstWord = FirstPlayerInput.Text ?? "";
-        string secondWord = SecondPlayerInput.Text ?? "";
+        string firstWord = FirstPlayerInput.Text ?? "_";
+        string secondWord = SecondPlayerInput.Text ?? "_";
 
         string message = _model.EvaluateWinner(firstWord, secondWord);
         _view.ShowResult(message);
@@ -39,11 +39,26 @@ public partial class GamePage : ContentPage
 
     private void OnStartRoundEvent(object sender, EventArgs e)
     {
-        _view.EnableStartRoundButton(false);
-        _view.ChangePlayer();
-        _view.Clear();
-        _model.UpdateAlphabet();
-        _model.NextTurn();
+        _view.StartRound();
+        _model.StartRound();
+
+        if (_model.IsLastRound())
+        {
+            _view.RestartButton();
+        }
+
+        if (_model.IsEndGame())
+        {
+            _model.Restart();
+            _view.Restart();
+        }
+
+        if (_model.IsFirstRound())
+        {
+            _view.FirstRound();
+        }
+
+        _view.RoundLabelUpdate(_model.CurrentRound);
     }
 
     private void OnVowelChoose(object sender, EventArgs e)

@@ -9,6 +9,9 @@ public class GameModel
 
     public event Action? OnStartTimer;
 
+    private int _currentRound = 0;
+    public int CurrentRound => _currentRound;
+
     private int _countLetter = 0;
     private int CountLetter
     {
@@ -49,21 +52,40 @@ public class GameModel
         return _countLetter >= 9;
     }
 
-    public void UpdateAlphabet()
+    public bool IsLastRound()
     {
-        _alphabet.Update();
+        return _currentRound == _settings.NumberOfRounds;
     }
 
-    public void NextTurn()
+    public bool IsEndGame()
     {
-        _settings.NextTurn();
+        return _currentRound > _settings.NumberOfRounds;
+    }
+
+    public bool IsFirstRound()
+    {
+        return _currentRound == 1;
+    }
+
+    public void StartRound()
+    {
         CountLetter = 0;
+        _currentRound++;
+        _alphabet.Update();
+        _settings.NextTurn();
+    }
+
+    public void Restart()
+    {
+        _currentRound = 1;
+        _settings.FirstPlayer.ResetPoints();
+        _settings.SecondPlayer.ResetPoints();
     }
 
     public string EvaluateWinner(string firstPlayerWord, string secondPlayerWord)
     {
-        firstPlayerWord = firstPlayerWord.Trim().ToLower() ?? " ";
-        secondPlayerWord = secondPlayerWord.Trim().ToLower() ?? " ";
+        firstPlayerWord = firstPlayerWord.Trim().ToLower() ?? "_";
+        secondPlayerWord = secondPlayerWord.Trim().ToLower() ?? "_";
 
         bool isValidLetters_f = _alphabet.IsValidLetters(firstPlayerWord);
         bool isValidLetters_s = _alphabet.IsValidLetters(secondPlayerWord);

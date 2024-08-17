@@ -26,6 +26,11 @@
                 _numberOfRounds = 6;
             }
 
+            if (_numberOfRounds <= 1)
+            {
+                _numberOfRounds = 2;
+            }
+
             if (!int.TryParse(roundTime, out _roundTime))
             {
                 _roundTime = 30;

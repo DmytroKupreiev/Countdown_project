@@ -15,5 +15,10 @@
         {
             Points += word.Length;
         }
+
+        public void ResetPoints()
+        {
+            Points = 0;
+        }
     }
 }
