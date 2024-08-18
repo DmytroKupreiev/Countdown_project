@@ -4,12 +4,14 @@ using Timer = System.Timers.Timer;
 
 public class CountdownTimer
 {
+    public bool IsActive { get; set; }
     private int _timeLeft;
     private int _seconds;
     private readonly Timer _timer;
 
     public event Action<int>? OnTimeChanged;
     public event Action? OnTimerFinished;
+    public event Action? OnTimerStarted;
 
     public CountdownTimer(int seconds)
     {
@@ -26,13 +28,23 @@ public class CountdownTimer
 
     public void Start()
     {
-        Task.Run(() => _timer.Start());
+        IsActive = true;
+        Task.Run(() => { 
+            _timer.Start();
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                OnTimerStarted?.Invoke();
+            });
+        });
+        
     }
 
     public void Stop()
     {
         _timer.Stop();
         _timeLeft = _seconds;
+        IsActive = false;
     }
 
     private void HandleTimerElapsed(object? sender, ElapsedEventArgs e)
@@ -44,7 +56,7 @@ public class CountdownTimer
             OnTimeChanged?.Invoke(_timeLeft);
         });
 
-        if (_timeLeft <= 0)
+        if (_timeLeft <= 0 || !IsActive)
         {
             Stop();
 

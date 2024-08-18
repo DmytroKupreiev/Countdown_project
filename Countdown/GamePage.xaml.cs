@@ -22,6 +22,7 @@ public partial class GamePage : ContentPage
         _model.OnStartTimer += _timer.Start;
         _model.OnStartTimer += _view.DisableAllButtons;
         _timer.OnTimeChanged += _view.OnChangeTimer;
+        _timer.OnTimerStarted += _view.EndRoundButton;
         _timer.OnTimerFinished += RoundResultEvaluate;
 
         _view.OnGameEntered();
@@ -34,28 +35,32 @@ public partial class GamePage : ContentPage
 
         string message = _model.EvaluateWinner(firstWord, secondWord);
         _view.ShowResult(message);
-        _view.EnableStartRoundButton(true);
+
+        if (_model.IsLastRound())
+        {
+            _view.ChangeGameButton("Restart", "#F3C15C");
+        }
+        else
+        {
+            _view.ChangeGameButton("Start", "#04C4AE");
+        }
     }
 
     private void OnStartRoundEvent(object sender, EventArgs e)
     {
+        if (_timer.IsActive)
+        {
+            _timer.IsActive = false;
+            return;
+        }
+
         _view.StartRound();
         _model.StartRound();
-
-        if (_model.IsLastRound())
-        {
-            _view.RestartButton();
-        }
 
         if (_model.IsEndGame())
         {
             _model.Restart();
             _view.Restart();
-        }
-
-        if (_model.IsFirstRound())
-        {
-            _view.FirstRound();
         }
 
         _view.RoundLabelUpdate(_model.CurrentRound);
@@ -83,6 +88,7 @@ public partial class GamePage : ContentPage
 
         _view.EnableFirstPlayerButtons(false);
         _view.EnableSecondPlayerButtons(false);
+        _view.ChangeGameButton("Start", "#04C4AE");
     }
 
     protected override void OnSizeAllocated(double width, double height)

@@ -1,5 +1,6 @@
 ﻿using Countdown;
 using Countdown.Common.GameData;
+using System.Reflection.Metadata;
 
 
 public class GameView
@@ -22,7 +23,7 @@ public class GameView
 
     public void StartRound()
     {
-        EnableStartRoundButton(false);
+        ChangeGameButton("Start", "#8D99AE", false);
         ChangePlayer();
         Clear();
     }
@@ -32,19 +33,22 @@ public class GameView
         _page.RoundLabel.Text = $"Round {round.ToString()}";
     }
 
-    public void RestartButton()
+    public void EndRoundButton()
     {
-        _page.StartRoundButton.Text = "Restart";
+        ChangeGameButton("End round", "#DD6D51");
+    }
+
+    public void ChangeGameButton(string text, string colorHEX, bool isEnable = true)
+    {
+        EnableStartRoundButton(isEnable);
+        var button = _page.StartRoundButton;
+        button.Text = text;
+        button.BackgroundColor = Color.FromRgba(colorHEX);
     }
 
     public void Restart()
     {
         UpdatePoints();
-    }
-
-    public void FirstRound()
-    {
-        _page.StartRoundButton.Text = "Start";
     }
 
     public void OnChangeTimer(int seconds)
@@ -93,14 +97,40 @@ public class GameView
 
     public void EnableFirstPlayerButtons(bool enable)
     {
-        _page.FirstPlayerVowel.IsEnabled = enable;
-        _page.FirstPlayerConsonant.IsEnabled = enable;
-    }
+        Button vowel = _page.FirstPlayerVowel;
+        Button consonant = _page.FirstPlayerConsonant;
 
+        vowel.IsEnabled = enable;
+        consonant.IsEnabled = enable;
+
+        UpdateColor(vowel, consonant, enable);
+    }
     public void EnableSecondPlayerButtons(bool enable)
     {
-        _page.SecondPlayerVowel.IsEnabled = enable;
-        _page.SecondPlayerConsonant.IsEnabled = enable;
+        Button vowel = _page.SecondPlayerVowel;
+        Button consonant = _page.SecondPlayerConsonant;
+
+        vowel.IsEnabled = enable;
+        consonant.IsEnabled = enable;
+
+        UpdateColor(vowel, consonant, enable);
+    }
+
+    private void UpdateColor(Button vowel, Button consonant, bool enable)
+    {
+        Color activeColor = Color.FromRgba("#EEE8BE");
+        Color disableColor = Color.FromRgba("#8D99AE");
+
+        if (enable)
+        {
+            vowel.BackgroundColor = activeColor;
+            consonant.BackgroundColor = activeColor;
+        }
+        else
+        {
+            vowel.BackgroundColor = disableColor;
+            consonant.BackgroundColor = disableColor;
+        }
     }
 
     public void EnableStartRoundButton(bool enable)
