@@ -39,6 +39,7 @@ public partial class GamePage : ContentPage
         if (_model.IsLastRound())
         {
             _view.ChangeGameButton("Restart", "#F3C15C");
+            _model.SaveResult();
         }
         else
         {

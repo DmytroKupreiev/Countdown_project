@@ -1,11 +1,13 @@
 ﻿using Countdown.Common.Dictionary;
 using Countdown.Common.GameData;
+using Countdown.Common.GameData.History;
 
 public class GameModel
 {
     private GameSettings _settings;
     private GameDictionary _gameDictionary;
     private GameAlphabet _alphabet;
+    private GameHistoryRepository _gameHistoryRepository;
 
     public event Action? OnStartTimer;
 
@@ -35,6 +37,7 @@ public class GameModel
         _settings = settings;
         _gameDictionary = gameDictionary;
         _alphabet = alphabet;
+        _gameHistoryRepository = new GameHistoryRepository();
     }
 
     public (char, int) GetLetter(string type)
@@ -134,5 +137,22 @@ public class GameModel
         }
 
         return outputMessage;
-    } 
+    }
+
+    public void SaveResult()
+    {
+        _gameHistoryRepository.AddRecord(
+                new GameRecord
+                {
+                    FirstPlayerName = _settings.FirstPlayer.Name,
+                    SecondPlayerName = _settings.SecondPlayer.Name,
+                    FirstPlayerPoints = _settings.FirstPlayer.Points,
+                    SecondPlayerPoints = _settings.SecondPlayer.Points,
+                    RoundTime = _settings.RoundTime,
+                    RoundCount = _settings.NumberOfRounds,
+                    EndGameDate = DateTimeOffset.Now.Date.ToShortDateString(),
+                    EndGameTime = DateTime.Now.ToString("HH:mm:ss"),
+                }
+            );
+    }
 }
