@@ -1,6 +1,4 @@
-﻿using Countdown.Common.Dictionary;
-using Countdown.Common;
-namespace Countdown
+﻿namespace Countdown
 {
     public partial class App : Application
     {
