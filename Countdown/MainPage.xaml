@@ -25,16 +25,33 @@
                    Margin= "0, 0, 0, 20"
                    FontSize="60"
                    FontAttributes="Bold"/>
-    
-            <Button Text="Play"
-                    Grid.Column="0" Grid.Row="2" 
-                    HorizontalOptions="Center"
-                    VerticalOptions="Start"
-                    FontSize="35"
-                    Clicked="OnPlayButtonClicked"
-                    Background="LightGray"
-                    Padding="30, 10, 30, 10"/>
 
+            <FlexLayout Grid.Column="0" Grid.Row="2"
+                        Direction="Row"
+                        JustifyContent="Center"
+                        VerticalOptions="Start"
+                         >
+
+                <Button Text="Play"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="35"
+                        Clicked="OnPlayButtonClicked"
+                        Background="LightGray"
+                        Padding="45, 10, 45, 10"
+                        Margin="5"/>
+
+                <Button Text="History"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start"
+                        FontSize="35"
+                        Clicked="OnHistoryButtonClicked"
+                        Background="LightGray"
+                        Padding="20, 10, 20, 10"
+                        Margin="5"/>
+            
+            </FlexLayout>
+            
             <Button Text="⚙️"
                     Grid.Column="0" Grid.Row="0" 
                     HorizontalOptions="End"

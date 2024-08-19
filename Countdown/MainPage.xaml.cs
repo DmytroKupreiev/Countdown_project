@@ -18,6 +18,11 @@
             await Navigation.PushAsync(new GameSettingsPage());
         }
 
+        private async void OnHistoryButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GameHistory());
+        }
+
         private void OnSettingsButtonClicked(object sender, EventArgs e)
         {
 

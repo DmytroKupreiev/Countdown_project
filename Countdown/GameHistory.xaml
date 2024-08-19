@@ -2,6 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Countdown.GameHistory"
-             Title="GameHistory">
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <Border  Padding="20, 5, 20, 5"
+             WidthRequest="{OnPlatform Android=600, WinUI=900}"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             HeightRequest="{OnPlatform Android=340, WinUI=650}"
+             StrokeShape="RoundRectangle 20, 20, 20, 20"
+             BackgroundColor="#C3D9FF"
+             Stroke="#B1D1FF"
+             StrokeThickness="3" >
+        
+    </Border>
     
 </ContentPage>
