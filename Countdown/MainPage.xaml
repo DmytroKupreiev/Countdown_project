@@ -2,66 +2,139 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Countdown.MainPage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#F5F5F5">
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CustomButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#242C4E"/>
+                <Setter Property="TextColor" Value="#F5F5F5"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontSize" Value="35"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
 
-    <ScrollView>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+                                
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+
+                                    </VisualState.Setters>
+                                </VisualState>
+                                
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#F5F5F5"/>
+                                        <Setter Property="TextColor" Value="#242C4E"/>
+                                        <Setter Property="BorderColor" Value="#242C4E"/>
+                                        <Setter Property="BorderWidth" Value="3"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                               
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Frame BorderColor="Transparent"
+           CornerRadius="0"
+           HasShadow="False">
+
+        <Frame.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="#F5F5F5"
+                          Offset="0.6" />
+                <GradientStop Color="#B0D7FF"
+                          Offset="1.0" />
+            </RadialGradientBrush>
+        </Frame.Background>
+
         <Grid>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
-                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Label Text="Countdown"
-                   Grid.Column="0" Grid.Row="1" 
+                   Grid.Column="0" Grid.Row="0" 
                    HorizontalOptions="Center"
-                   VerticalOptions="Center"
+                   VerticalOptions="End"
                    Margin= "0, 0, 0, 20"
+                   TextColor="#242C4E"
                    FontSize="60"
                    FontAttributes="Bold"/>
 
-            <FlexLayout Grid.Column="0" Grid.Row="2"
+            <FlexLayout Grid.Column="0" Grid.Row="1"
                         Direction="Row"
                         JustifyContent="Center"
-                        VerticalOptions="Start"
-                         >
+                        VerticalOptions="Start" >
 
                 <Button Text="Play"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Start"
-                        FontSize="35"
                         Clicked="OnPlayButtonClicked"
-                        Background="LightGray"
                         Padding="45, 10, 45, 10"
-                        Margin="5"/>
+                        Style="{StaticResource CustomButtonStyle}">
+
+                    <!--<VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#F5F5F5"/>
+                                    <Setter Property="TextColor" Value="#242C4E"/>
+                                    <Setter Property="BorderColor" Value="#242C4E"/>
+                                    <Setter Property="BorderWidth" Value="3"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>-->
+
+                </Button>
 
                 <Button Text="History"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Start"
-                        FontSize="35"
                         Clicked="OnHistoryButtonClicked"
-                        Background="LightGray"
                         Padding="20, 10, 20, 10"
-                        Margin="5"/>
-            
+                        Style="{StaticResource CustomButtonStyle}">
+
+                    <!--<VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Background" Value="#F5F5F5"/>
+                                    <Setter Property="TextColor" Value="#242C4E"/>
+                                    <Setter Property="BorderColor" Value="#242C4E"/>
+                                    <Setter Property="BorderWidth" Value="3"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>-->
+                </Button>
+
             </FlexLayout>
-            
-            <Button Text="⚙️"
-                    Grid.Column="0" Grid.Row="0" 
-                    HorizontalOptions="End"
-                    VerticalOptions="Start"
-                    FontSize="25"
-                    Margin ="0, 10, 10, 0"    
-                    Clicked="OnSettingsButtonClicked"
-                    Background="LightGray"/>
 
         </Grid>
-    </ScrollView>
-
+    </Frame>
 </ContentPage>

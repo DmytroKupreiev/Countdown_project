@@ -13,7 +13,7 @@ namespace Countdown.Common.GameHistory
         {
             _collectionView = new CollectionView();
         }
-            
+
         public CollectionView Build()
         {
             if (_source == null)
@@ -92,13 +92,21 @@ namespace Countdown.Common.GameHistory
                     Children = { containerPlayer1, containerPlayer2, GameInfo, DateInfo },
                 };
 
-                return new Border
+                var border = new Border
                 {
                     Content = container,
                     Padding = 10,
+                    Margin = new Thickness(10, 5, 10, 5),
                     BackgroundColor = Color.FromRgba("#F5F5F5"),
                     Stroke = Color.FromRgba("#F5F5F5"),
-                    StrokeShape = new RoundRectangle {  CornerRadius = new CornerRadius(20) }
+                    StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(20) },
+
+                };
+
+                return new StackLayout
+                {
+                    Children = { border },
+                    Margin = new Thickness(15, 10)
                 };
             });
 

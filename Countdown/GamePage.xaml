@@ -33,7 +33,7 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="AdaptiveButtonPadding" TargetType="Button">
+            <!--<Style x:Key="AdaptiveButtonPadding" TargetType="Button">
                 <Setter Property="Padding">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness">
@@ -41,9 +41,9 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
 
-            <Style x:Key="AdaptiveButtonPadding_s" TargetType="Button">
+            <!--<Style x:Key="AdaptiveButtonPadding_s" TargetType="Button">
                 <Setter Property="Padding">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness">
@@ -51,9 +51,9 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
 
-            <Style x:Key="AdaptiveButtonMargin" TargetType="Button">
+            <!--<Style x:Key="AdaptiveButtonMargin" TargetType="Button">
                 <Setter Property="Margin">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness">
@@ -62,7 +62,7 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
 
             <Style x:Key="AdaptiveFlexLayoutMargin" TargetType="FlexLayout">
                 <Setter Property="Margin">
@@ -82,6 +82,31 @@
                             <On Platform="Android" Value="10, 5, 10, 5"/>
                             <On Platform="UWP" Value="10, 0, 10, 0"/>
                         </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="CustomButtonStyle" TargetType="Button">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#A9DEF9"/>
+                                        <Setter Property="TextColor" Value="#001219"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -202,7 +227,7 @@
                             <Label x:Name="FirstPlayerName" 
                                x:FieldModifier="Public"
                                Text="Player first" 
-                               TextColor="Black" 
+                               TextColor="#001219" 
                                HorizontalOptions="Center" 
                                VerticalOptions="Center"
                                FontSize="20"/>
@@ -218,7 +243,7 @@
                             <Label x:Name="FirstPlayerPoints"
                                x:FieldModifier="Public"
                                Text="0 Points" 
-                               TextColor="Black" 
+                               TextColor="#001219" 
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
                                FontSize="16"/>
@@ -240,7 +265,8 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
-                                Style="{StaticResource AdaptiveButtonPadding}"
+                                Padding="{OnPlatform Android='27, 5, 0, 0'}"
+                                Style="{StaticResource CustomButtonStyle}"
                                 Margin="0,0,5,0"
                                 Clicked="OnVowelChoose"/>
 
@@ -253,7 +279,8 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
-                                Style="{StaticResource AdaptiveButtonPadding_s}"
+                                Padding="{OnPlatform Android='10, 5, 0, 0'}"
+                                Style="{StaticResource CustomButtonStyle}"
                                 Margin="5,0,0,0"
                                 Clicked="OnConsonantChoose"/>
 
@@ -298,7 +325,7 @@
                             <Label x:Name="SecondPlayerName" 
                                x:FieldModifier="Public"
                                Text="Player second" 
-                               TextColor="Black" 
+                               TextColor="#001219" 
                                HorizontalOptions="Center" 
                                VerticalOptions="Center"
                                FontSize="20"/>
@@ -314,7 +341,7 @@
                             <Label x:Name="SecondPlayerPoints"
                                x:FieldModifier="Public"
                                Text="0 Points" 
-                               TextColor="Black" 
+                               TextColor="#001219" 
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
                                FontSize="16"/>
@@ -335,7 +362,8 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
-                                Style="{StaticResource AdaptiveButtonPadding}"
+                                Padding="{OnPlatform Android='27, 5, 0, 0'}"
+                                Style="{StaticResource CustomButtonStyle}"
                                 Margin="0,0,5,0"
                                 Clicked="OnVowelChoose"/>
 
@@ -348,7 +376,8 @@
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
                                 FontSize="16"
-                                Style="{StaticResource AdaptiveButtonPadding_s}"
+                                Padding="{OnPlatform Android='10, 5, 0, 0'}"
+                                Style="{StaticResource CustomButtonStyle}"
                                 Margin="5,0,0,0"
                                 Clicked="OnConsonantChoose"/>
 
@@ -425,7 +454,8 @@
                             FlexLayout.Basis="20%"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
-                            Style="{StaticResource AdaptiveButtonMargin}"
+                            Margin="{OnPlatform Android='0, 2, 0, 2', WinUI='0, 5, 0, 5'}"
+                            Style="{StaticResource CustomButtonStyle}"
                             TextColor="#FFFFFF"
                             FontSize="16"
                             Padding="0, 0, 0, 2"

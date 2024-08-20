@@ -128,14 +128,23 @@ public class GameView
         }
         else
         {
+            VisualStateManager.GoToState(vowel, "Normal");
             vowel.BackgroundColor = disableColor;
+            VisualStateManager.GoToState(consonant, "Normal");
             consonant.BackgroundColor = disableColor;
         }
     }
 
     public void EnableStartRoundButton(bool enable)
-    {
-        _page.StartRoundButton.IsEnabled = enable;
+    {   
+        Button button = _page.StartRoundButton;
+
+        if(!enable)
+        {
+            VisualStateManager.GoToState(button, "Normal");
+        }
+
+        button.IsEnabled = enable;
     }
 
     public async void ShowResult(string message)

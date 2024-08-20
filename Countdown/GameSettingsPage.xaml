@@ -5,6 +5,38 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#F5F5F5">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CustomButtonStyle" TargetType="Button">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <Setter.Value>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CommonStates">
+
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background" Value="#F5F5F5"/>
+                                        <Setter Property="TextColor" Value="#242C4E"/>
+                                        <Setter Property="BorderColor" Value="#242C4E"/>
+                                        <Setter Property="BorderWidth" Value="3"/>
+                                        <Setter Property="Margin" Value="0, 12, 0, 0"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <Border Padding="20, 5, 20, 5"
                 WidthRequest="600"
                 HorizontalOptions="Center"
@@ -14,10 +46,10 @@
                 BackgroundColor="#C3D9FF"
                 Stroke="#B1D1FF"
                 StrokeThickness="3">
-            
-                  
-            
-            <FlexLayout Direction="Column"
+
+
+
+        <FlexLayout Direction="Column"
                         JustifyContent="SpaceEvenly"
                         AlignContent="SpaceEvenly"
                         AlignItems="Stretch"
@@ -25,82 +57,83 @@
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
 
-                <Label Text="Game settings"
-                       TextColor="#001219"
+            <Label Text="Game settings"
+                       TextColor="#242C4E"
                         FontSize="24"
                         FontAttributes="Bold"
                         HorizontalOptions="CenterAndExpand"
                         BackgroundColor="Transparent"/>
 
-                <Entry x:Name="FirstPlayer"
+            <Entry x:Name="FirstPlayer"
                        Placeholder="First player"
                         Keyboard="Default"
                         HorizontalOptions="FillAndExpand"
                         BackgroundColor="#F5F5F5"/>
 
-                <Entry x:Name="SecondPlayer" 
+            <Entry x:Name="SecondPlayer" 
                         Placeholder="Second player"
                         Keyboard="Default"
                         HorizontalOptions="FillAndExpand"
                         BackgroundColor="#F5F5F5"/>
 
-                <Entry x:Name="CountRounds" 
+            <Entry x:Name="CountRounds" 
                         Placeholder="Number of rounds"
                         Keyboard="Numeric"
                         HorizontalOptions="FillAndExpand"
                         BackgroundColor="#F5F5F5"/>
 
-                 <FlexLayout Direction="Row"
+            <FlexLayout Direction="Row"
                              HorizontalOptions="FillAndExpand"
                              JustifyContent="SpaceBetween"
                              AlignItems="Center"
                              AlignContent="SpaceBetween"
                              Margin="0, 10, 0, 0">
 
-                    <Picker x:Name="RoundTime"
+                <Picker x:Name="RoundTime"
                             BackgroundColor="#F5F5F5"
                             FlexLayout.Basis="47%"
                             TextColor="#001219">
 
-                         <Picker.Title>
-                             Round time
-                         </Picker.Title>
+                    <Picker.Title>
+                        Round time
+                    </Picker.Title>
 
-                         <Picker.Items>
-                             <x:String>30</x:String>
-                             <x:String>60</x:String>
-                             <x:String>90</x:String>
-                         </Picker.Items>
-                     </Picker>
+                    <Picker.Items>
+                        <x:String>30</x:String>
+                        <x:String>60</x:String>
+                        <x:String>90</x:String>
+                    </Picker.Items>
+                </Picker>
 
-                    <Picker x:Name="FirstTurn" 
+                <Picker x:Name="FirstTurn" 
                             BackgroundColor="#F5F5F5"
                             FlexLayout.Basis="47%"
                             TextColor="#001219">
 
-                         <Picker.Title>
-                             First turn
-                         </Picker.Title>
+                    <Picker.Title>
+                        First turn
+                    </Picker.Title>
 
-                         <Picker.Items>
-                             <x:String>First player</x:String>
-                             <x:String>Second player</x:String>
-                             <x:String>Random</x:String>
-                         </Picker.Items>
-                     </Picker>
+                    <Picker.Items>
+                        <x:String>First player</x:String>
+                        <x:String>Second player</x:String>
+                        <x:String>Random</x:String>
+                    </Picker.Items>
+                </Picker>
 
-                 </FlexLayout>
+            </FlexLayout>
 
-                <Button Text="Play"
-                        BackgroundColor="#14165f"
+            <Button Text="Play"
+                        BackgroundColor="#242C4E"
                         TextColor="#F5F5F5"
                         FontAttributes="Bold"
                         FontSize="{OnPlatform WinUI=20}"
                         HorizontalOptions="FillAndExpand"
                         Margin="0, 15, 0, 0"
-                        Clicked="OnPlayButtonClicked"/>
-                
-            </FlexLayout>
-        </Border>
+                        Clicked="OnPlayButtonClicked"
+                        Style="{StaticResource CustomButtonStyle}"/>
+
+        </FlexLayout>
+    </Border>
 
 </ContentPage>

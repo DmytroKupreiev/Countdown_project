@@ -6,7 +6,7 @@
              >
 
     <Border  x:Name="CollectionViewContainer"
-             Padding="20, 20, 20, 20"
+             Padding="10, 15, 10, 15"
              WidthRequest="{OnPlatform Android=600, WinUI=900}"
              HorizontalOptions="Center"
              VerticalOptions="Center"
@@ -14,7 +14,8 @@
              StrokeShape="RoundRectangle 25, 25, 25, 25"
              BackgroundColor="#C3D9FF"
              Stroke="#B1D1FF"
-             StrokeThickness="3" >
+             StrokeThickness="3" 
+             >
         
     </Border>
     
