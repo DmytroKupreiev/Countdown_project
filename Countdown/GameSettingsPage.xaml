@@ -57,6 +57,13 @@
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
 
+            <ActivityIndicator x:Name="LoadingIndicator"
+                           IsVisible="False"
+                           IsRunning="False"
+                           Color="Blue"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
             <Label Text="Game settings"
                        TextColor="#242C4E"
                         FontSize="24"

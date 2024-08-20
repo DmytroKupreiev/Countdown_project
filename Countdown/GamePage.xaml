@@ -13,6 +13,10 @@
             <Color x:Key="LightColorText">#ffffff</Color>
             <x:Double x:Key="BoxSize">100</x:Double>
 
+            <Style x:Key="LetterBoxLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#F5F5F5"/>
+                <Setter Property="FontSize" Value="{OnPlatform WinUI=35, Android=25}"/>
+            </Style>
             
             <Style x:Key="SquareStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource LetterBox}"/>
@@ -32,37 +36,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
-            <!--<Style x:Key="AdaptiveButtonPadding" TargetType="Button">
-                <Setter Property="Padding">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="27, 5, 0, 0"/>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>-->
-
-            <!--<Style x:Key="AdaptiveButtonPadding_s" TargetType="Button">
-                <Setter Property="Padding">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="10, 5, 0, 0"/>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>-->
-
-            <!--<Style x:Key="AdaptiveButtonMargin" TargetType="Button">
-                <Setter Property="Margin">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="0, 2, 0, 2"/>
-                            <On Platform="UWP" Value="0, 5, 0, 5"/>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>-->
 
             <Style x:Key="AdaptiveFlexLayoutMargin" TargetType="FlexLayout">
                 <Setter Property="Margin">
@@ -154,47 +127,47 @@
                         </Grid.ColumnDefinitions>
 
                         <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_1" TextColor="{StaticResource LightColorText}" Text="" 
+                            <Label x:Name="Letter_1" Style="{StaticResource LetterBoxLabel}" Text="" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_2" TextColor="{StaticResource LightColorText}" Text="" 
+                            <Label x:Name="Letter_2" Style="{StaticResource LetterBoxLabel}" Text="" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_3" TextColor="{StaticResource LightColorText}" Text="" 
+                            <Label x:Name="Letter_3" Style="{StaticResource LetterBoxLabel}" Text="" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame  Grid.Row="0" Grid.Column="3" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_4" TextColor="{StaticResource LightColorText}" Text="" 
+                            <Label x:Name="Letter_4" Style="{StaticResource LetterBoxLabel}" Text="" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="4" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_5" TextColor="{StaticResource LightColorText}" Text="" 
+                            <Label x:Name="Letter_5" Style="{StaticResource LetterBoxLabel}" Text="" 
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="5" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_6" TextColor="{StaticResource LightColorText}"
+                            <Label x:Name="Letter_6" Style="{StaticResource LetterBoxLabel}"
                                    Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="6" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_7" TextColor="{StaticResource LightColorText}" 
+                            <Label x:Name="Letter_7" Style="{StaticResource LetterBoxLabel}"
                                    Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="7" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_8" TextColor="{StaticResource LightColorText}" 
+                            <Label x:Name="Letter_8" Style="{StaticResource LetterBoxLabel}"
                                    Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
 
                         <Frame Grid.Row="0" Grid.Column="8" Style="{StaticResource SquareStyle}" HasShadow="False">
-                            <Label x:Name="Letter_9" TextColor="{StaticResource LightColorText}" 
+                            <Label x:Name="Letter_9" Style="{StaticResource LetterBoxLabel}"
                                    Text="" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                         </Frame>
                     </Grid>
@@ -230,7 +203,7 @@
                                TextColor="#001219" 
                                HorizontalOptions="Center" 
                                VerticalOptions="Center"
-                               FontSize="20"/>
+                               FontSize="{OnPlatform Android=20, WinUI=25}"/>
                         </Frame>
 
                         <Frame BackgroundColor="White"
@@ -246,7 +219,7 @@
                                TextColor="#001219" 
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
-                               FontSize="16"/>
+                               FontSize="{OnPlatform Android=20, WinUI=25}"/>
                         </Frame>
 
 
@@ -260,7 +233,7 @@
                                 x:FieldModifier="Public"
                                 Text="Vowel"
                                 TextColor="#001219"
-                                FontSize="16"
+                                FontSize="{OnPlatform Android=16, WinUI=25}"
                                 BackgroundColor="LightGray"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
@@ -274,7 +247,7 @@
                                 x:FieldModifier="Public"
                                 Text="Consonant"
                                 TextColor="#001219"
-                                FontSize="16"
+                                FontSize="{OnPlatform Android=16, WinUI=25}"
                                 BackgroundColor="LightGray"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
@@ -298,6 +271,7 @@
                                Placeholder="Enter a word" 
                                BackgroundColor="White"
                                TextColor="Black"
+                               FontSize="{OnPlatform Android=20, WinUI=25}"
                                HorizontalOptions="FillAndExpand"
                                Margin="10,0"/>
                         </Frame>
@@ -328,7 +302,7 @@
                                TextColor="#001219" 
                                HorizontalOptions="Center" 
                                VerticalOptions="Center"
-                               FontSize="20"/>
+                               FontSize="{OnPlatform Android=20, WinUI=25}"/>
                         </Frame>
 
                         <Frame BackgroundColor="White"
@@ -344,7 +318,7 @@
                                TextColor="#001219" 
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
-                               FontSize="16"/>
+                               FontSize="{OnPlatform Android=20, WinUI=25}"/>
                         </Frame>
 
                         <FlexLayout Direction="Row" 
@@ -357,7 +331,7 @@
                                 x:FieldModifier="Public"
                                 Text="Vowel" 
                                 TextColor="#001219"
-                                FontSize="16"
+                                FontSize="{OnPlatform Android=16, WinUI=25}"
                                 BackgroundColor="LightGray"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
@@ -375,7 +349,7 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
-                                FontSize="16"
+                                FontSize="{OnPlatform Android=16, WinUI=25}"
                                 Padding="{OnPlatform Android='10, 5, 0, 0'}"
                                 Style="{StaticResource CustomButtonStyle}"
                                 Margin="5,0,0,0"
@@ -395,6 +369,7 @@
                                Placeholder="Enter a word" 
                                BackgroundColor="White"
                                TextColor="Black"
+                               FontSize="{OnPlatform Android=20, WinUI=25}"
                                HorizontalOptions="FillAndExpand"
                                Margin="10,0"/>
                         </Frame>
@@ -425,7 +400,7 @@
                                TextColor="Black"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
-                               FontSize="20"/>
+                               FontSize="{OnPlatform Android=20, WinUI=25}"/>
                         </Frame>
 
                         <Frame BackgroundColor="White"
@@ -441,7 +416,7 @@
                                TextColor="Black"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
-                               FontSize="25"
+                               FontSize="{OnPlatform Android=25, WinUI=30}"
                                Text="Timer"
                                />
 
@@ -457,7 +432,7 @@
                             Margin="{OnPlatform Android='0, 2, 0, 2', WinUI='0, 5, 0, 5'}"
                             Style="{StaticResource CustomButtonStyle}"
                             TextColor="#FFFFFF"
-                            FontSize="16"
+                            FontSize="{OnPlatform Android=20, WinUI=25}"
                             Padding="0, 0, 0, 2"
                             Clicked="OnStartRoundEvent"/>
 

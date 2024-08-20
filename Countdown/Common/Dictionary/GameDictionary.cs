@@ -10,9 +10,14 @@ namespace Countdown.Common.Dictionary
         public GameDictionary()
         {
             _dictLoader = new DictionaryLoader();
-            _dictionary = _dictLoader.GetDictionaryJson() ?? _dictLoader.GetDictionaryTxt();
         }
         
+        public async Task LoadDictionary()
+        {
+            await _dictLoader.InitializeAsync();
+            _dictionary = _dictLoader.GetDictionaryJson() ?? _dictLoader.GetDictionaryTxt();
+        }
+
         public bool HasWord(string word)
         {
             if (word.Length == 0) return false;

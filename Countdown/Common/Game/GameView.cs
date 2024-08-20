@@ -57,9 +57,21 @@ public class GameView
     }
 
     public void ChangeLetter(char letter, int index)
-    {
-        _page.FindByName<Label>($"Letter_{index + 1}").Text = letter.ToString()
-                                                                    .ToUpper();
+    {   
+        var label = _page.FindByName<Label>($"Letter_{index + 1}");
+        label.Text = letter.ToString().ToUpper();
+
+        
+
+        var animation = new Animation
+        {
+            { 0, 0.2, new Animation(v => label.Scale = v, 1, 0.5, Easing.CubicOut) },
+            { 0.2, 0.7, new Animation(v => label.Scale = v, 0.5, 1.2, Easing.CubicInOut) },
+            { 0.7, 1, new Animation(v => label.Scale = v, 1.2, 1, Easing.SpringOut) }
+        };
+
+
+        animation.Commit(_page, "BounceAnimation", 16, 400);
     }  
 
     public void Clear()

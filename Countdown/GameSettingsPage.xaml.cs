@@ -22,8 +22,12 @@ public partial class GameSettingsPage : ContentPage
                                                      numberOfRounds, 
                                                      roundTime, firstTurn);
 
+        GameDictionary gameDictionary = new GameDictionary();
+
+        await gameDictionary.LoadDictionary();
+
         await Navigation.PushAsync(new GamePage(gameSettings, 
-                                                new GameDictionary(),
+                                                gameDictionary,
                                                 new GameAlphabet())
                                    );
     }

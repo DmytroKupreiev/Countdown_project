@@ -14,13 +14,12 @@ namespace Countdown.Common.Dictionary
         private static readonly string TXT_FILE_PATH = Path.Combine(FOLDER_PATH, TXT_FILE_NAME);
         private static readonly string JSON_FILE_PATH = Path.Combine(FOLDER_PATH, JSON_FILE_NAME);
 
-        public DictionaryLoader()
-        {
-            InitializeAsync().GetAwaiter().GetResult();
-        }
+        public bool IsDownloading { get; private set; }
 
         public async Task InitializeAsync()
         {
+            IsDownloading = true;
+
             if (!Directory.Exists(FOLDER_PATH))
             {
                 Directory.CreateDirectory(FOLDER_PATH);
@@ -30,6 +29,8 @@ namespace Countdown.Common.Dictionary
             {
                await DownloadDictionaryAsync();
             }
+
+            IsDownloading = false;
         }
 
         public Dictionary<char, HashSet<string>>? GetDictionaryJson()
