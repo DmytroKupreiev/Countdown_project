@@ -25,7 +25,7 @@
                                         <Setter Property="TextColor" Value="#242C4E"/>
                                         <Setter Property="BorderColor" Value="#242C4E"/>
                                         <Setter Property="BorderWidth" Value="3"/>
-                                        <Setter Property="Margin" Value="0, 12, 0, 0"/>
+                                        <Setter Property="Margin" Value="0, -3, 0, 0"/>
                                     </VisualState.Setters>
                                 </VisualState>
 
@@ -57,13 +57,6 @@
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
 
-            <ActivityIndicator x:Name="LoadingIndicator"
-                           IsVisible="False"
-                           IsRunning="False"
-                           Color="Blue"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
-
             <Label Text="Game settings"
                        TextColor="#242C4E"
                         FontSize="24"
@@ -89,21 +82,14 @@
                         HorizontalOptions="FillAndExpand"
                         BackgroundColor="#F5F5F5"/>
 
-            <FlexLayout Direction="Row"
-                             HorizontalOptions="FillAndExpand"
-                             JustifyContent="SpaceBetween"
-                             AlignItems="Center"
-                             AlignContent="SpaceBetween"
-                             Margin="0, 10, 0, 0">
 
+            <HorizontalStackLayout>
                 <Picker x:Name="RoundTime"
-                            BackgroundColor="#F5F5F5"
-                            FlexLayout.Basis="47%"
-                            TextColor="#001219">
-
-                    <Picker.Title>
-                        Round time
-                    </Picker.Title>
+                        BackgroundColor="#F5F5F5"
+                        WidthRequest="275"
+                        Margin="0, 0, 5, 0"
+                        TextColor="#001219"
+                        Title="Round time">
 
                     <Picker.Items>
                         <x:String>30</x:String>
@@ -113,13 +99,11 @@
                 </Picker>
 
                 <Picker x:Name="FirstTurn" 
-                            BackgroundColor="#F5F5F5"
-                            FlexLayout.Basis="47%"
-                            TextColor="#001219">
-
-                    <Picker.Title>
-                        First turn
-                    </Picker.Title>
+                        BackgroundColor="#F5F5F5"
+                        WidthRequest="275"
+                        Margin="5, 0, 0, 0"
+                        TextColor="#001219"
+                        Title="First turn">
 
                     <Picker.Items>
                         <x:String>First player</x:String>
@@ -127,8 +111,8 @@
                         <x:String>Random</x:String>
                     </Picker.Items>
                 </Picker>
+            </HorizontalStackLayout>
 
-            </FlexLayout>
 
             <Button Text="Play"
                         BackgroundColor="#242C4E"
@@ -136,7 +120,7 @@
                         FontAttributes="Bold"
                         FontSize="{OnPlatform WinUI=20}"
                         HorizontalOptions="FillAndExpand"
-                        Margin="0, 15, 0, 0"
+                        Margin="0, 0, 0, 0"
                         Clicked="OnPlayButtonClicked"
                         Style="{StaticResource CustomButtonStyle}"/>
 

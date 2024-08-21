@@ -9,7 +9,7 @@ public partial class GamePage : ContentPage
     private GameView _view;
     private CountdownTimer _timer;
 
-	public GamePage(GameSettings settings,
+    public GamePage(GameSettings settings,
                     GameDictionary dictionary,
                     GameAlphabet alphabet)
 	{

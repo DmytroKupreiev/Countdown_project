@@ -229,33 +229,34 @@
                                 Style="{StaticResource AdaptiveFlexLayoutMargin}"         
                                 FlexLayout.Basis="25%">
 
-                            <Button x:Name="FirstPlayerVowel"
-                                x:FieldModifier="Public"
-                                Text="Vowel"
-                                TextColor="#001219"
-                                FontSize="{OnPlatform Android=16, WinUI=25}"
-                                BackgroundColor="LightGray"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand"
-                                FlexLayout.Basis="50%"
-                                Padding="{OnPlatform Android='27, 5, 0, 0'}"
-                                Style="{StaticResource CustomButtonStyle}"
-                                Margin="0,0,5,0"
-                                Clicked="OnVowelChoose"/>
+                            <Button x:Name="FirstPlayerVowel" 
+                                    x:FieldModifier="Public"
+                                    Text="Vowel" 
+                                    TextColor="#001219"
+                                    FontSize="{OnPlatform Android=16, WinUI=25}"
+                                    BackgroundColor="LightGray"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    FlexLayout.Basis="50%"
+                                    Style="{StaticResource CustomButtonStyle}"
+                                    Margin="0,0,5,0"   
+                                    Padding="{OnPlatform WinUI=-20}"
+                                    LineBreakMode="NoWrap"
+                                    Clicked="OnVowelChoose"/>
 
                             <Button x:Name="FirstPlayerConsonant" 
-                                x:FieldModifier="Public"
-                                Text="Consonant"
-                                TextColor="#001219"
-                                FontSize="{OnPlatform Android=16, WinUI=25}"
-                                BackgroundColor="LightGray"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand"
-                                FlexLayout.Basis="50%"
-                                Padding="{OnPlatform Android='10, 5, 0, 0'}"
-                                Style="{StaticResource CustomButtonStyle}"
-                                Margin="5,0,0,0"
-                                Clicked="OnConsonantChoose"/>
+                                    x:FieldModifier="Public"
+                                    FlexLayout.Basis="50%"
+                                    Text="Consonant"
+                                    TextColor="#001219"
+                                    FontSize="{OnPlatform Android=16, WinUI=25}"
+                                    BackgroundColor="LightGray"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    Style="{StaticResource CustomButtonStyle}"
+                                    Margin="5,0,0,0"
+                                    Padding="{OnPlatform WinUI=-45, Android=-15}"
+                                    Clicked="OnConsonantChoose"/>
 
                         </FlexLayout>
 
@@ -325,7 +326,7 @@
                                 JustifyContent="SpaceBetween"
                                 AlignItems="Stretch"
                                 Style="{StaticResource AdaptiveFlexLayoutMargin}"         
-                                FlexLayout.Basis="25%"  >
+                                FlexLayout.Basis="25%">
 
                             <Button x:Name="SecondPlayerVowel" 
                                 x:FieldModifier="Public"
@@ -336,9 +337,9 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
-                                Padding="{OnPlatform Android='27, 5, 0, 0'}"
                                 Style="{StaticResource CustomButtonStyle}"
                                 Margin="0,0,5,0"
+                                Padding="0"
                                 Clicked="OnVowelChoose"/>
 
                             <Button x:Name="SecondPlayerConsonant"
@@ -349,10 +350,10 @@
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand"
                                 FlexLayout.Basis="50%"
-                                FontSize="{OnPlatform Android=16, WinUI=25}"
-                                Padding="{OnPlatform Android='10, 5, 0, 0'}"
+                                FontSize="{OnPlatform Android=16, WinUI=25}" 
                                 Style="{StaticResource CustomButtonStyle}"
                                 Margin="5,0,0,0"
+                                Padding="{OnPlatform WinUI=-45, Android=-15}"
                                 Clicked="OnConsonantChoose"/>
 
                         </FlexLayout>

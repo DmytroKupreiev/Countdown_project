@@ -22,10 +22,5 @@
         {
             await Navigation.PushAsync(new GameHistory());
         }
-
-        private void OnSettingsButtonClicked(object sender, EventArgs e)
-        {
-
-        }
     }   
 }

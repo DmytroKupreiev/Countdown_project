@@ -9,6 +9,7 @@ public partial class GameSettingsPage : ContentPage
 		InitializeComponent();
 	}
 
+
     private async void OnPlayButtonClicked(object sender, EventArgs e)
 	{
         string firstPlayer = FirstPlayer.Text;
