@@ -3,8 +3,7 @@
 public class SoundController
 {
     private MediaElement _mediaElement;
-
-
+    
     public SoundController(MediaElement mediaElement)
     {
         _mediaElement = mediaElement;
@@ -19,6 +18,5 @@ public class SoundController
     {
         _mediaElement.Stop();
     }
-
 }
 

@@ -36,7 +36,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Border Padding="20, 5, 20, 5"
                 WidthRequest="600"
                 HorizontalOptions="Center"
@@ -46,8 +46,6 @@
                 BackgroundColor="#C3D9FF"
                 Stroke="#B1D1FF"
                 StrokeThickness="3">
-
-
 
         <FlexLayout Direction="Column"
                         JustifyContent="SpaceEvenly"
@@ -76,7 +74,14 @@
                         HorizontalOptions="FillAndExpand"
                         BackgroundColor="#F5F5F5"/>
 
-            <Entry x:Name="CountRounds" 
+                <ActivityIndicator x:Name="LoadingIndicator"
+                       IsRunning="False"
+                       IsVisible="False"
+                       Color="SeaGreen"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+            
+                <Entry x:Name="CountRounds" 
                         Placeholder="Number of rounds"
                         Keyboard="Numeric"
                         HorizontalOptions="FillAndExpand"
@@ -114,7 +119,7 @@
             </HorizontalStackLayout>
 
 
-            <Button Text="Play"
+            <Button x:Name="ButtonStart" Text="Play"
                         BackgroundColor="#242C4E"
                         TextColor="#F5F5F5"
                         FontAttributes="Bold"
@@ -122,8 +127,26 @@
                         HorizontalOptions="FillAndExpand"
                         Margin="0, 0, 0, 0"
                         Clicked="OnPlayButtonClicked"
-                        Style="{StaticResource CustomButtonStyle}"/>
+                        Style="{StaticResource CustomButtonStyle}">
+            </Button >
 
+            <Border x:Name="ContainerIndicator"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="#242C4E"
+                    IsEnabled="False"
+                    IsVisible="False"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 15, 15, 15, 15"
+                    Padding="{OnPlatform Android='0,0,0,0', WinUI='0,7,0,7'}">
+                
+                <ActivityIndicator x:Name="Indicator"
+                                   IsRunning="False"
+                                   IsVisible="False"
+                                   Color="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+            </Border>
+            
         </FlexLayout>
     </Border>
 

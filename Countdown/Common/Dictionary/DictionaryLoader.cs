@@ -8,6 +8,7 @@ namespace Countdown.Common.Dictionary
         private const string FOLDER_NAME = "Resources/Dictionary";
         private const string TXT_FILE_NAME = "cdwords.txt";
         private const string JSON_FILE_NAME = "cdwords.json";
+        private const string WORD_BACKUP_PATH = "Backup/words_backup.txt";
 
         private static readonly string CURRENT_APP_FOLDER = FileSystem.Current.AppDataDirectory;
         private static readonly string FOLDER_PATH = Path.Combine(CURRENT_APP_FOLDER, FOLDER_NAME);
@@ -71,11 +72,22 @@ namespace Countdown.Common.Dictionary
 
         private async Task DownloadDictionaryAsync()
         {
-            using (HttpClient client = new())
+            string content;
+            NetworkAccess accessType = Connectivity.Current.NetworkAccess;
+
+            if (accessType == NetworkAccess.Internet)
             {
-                string content = await client.GetStringAsync(NET_FILE_PATH);
-                await File.WriteAllTextAsync(TXT_FILE_PATH, content);
+                using HttpClient client = new();
+                content = await client.GetStringAsync(NET_FILE_PATH);
             }
+            else
+            {
+                using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(WORD_BACKUP_PATH);
+                using StreamReader reader = new(inputStream);
+                content = await reader.ReadToEndAsync();
+            }
+           
+            await File.WriteAllTextAsync(TXT_FILE_PATH, content);
         }
 
         private Dictionary<char, HashSet<string>>? JSONLoad()

@@ -2,21 +2,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Countdown.GameHistory"
-             NavigationPage.HasNavigationBar="False"
-             >
+             NavigationPage.HasNavigationBar="False">
 
-    <Border  x:Name="CollectionViewContainer"
-             Padding="10, 15, 10, 15"
-             WidthRequest="{OnPlatform Android=600, WinUI=900}"
-             HorizontalOptions="Center"
-             VerticalOptions="Center"
-             HeightRequest="{OnPlatform Android=340, WinUI=650}"
-             StrokeShape="RoundRectangle 25, 25, 25, 25"
-             BackgroundColor="#C3D9FF"
-             Stroke="#B1D1FF"
-             StrokeThickness="3" 
-             >
-        
-    </Border>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="CollectionViewContainer"
+                Grid.Row="0" Grid.Column="1"
+                Padding="10, 15, 10, 15"
+                WidthRequest="{OnPlatform Android=600, WinUI=900}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                HeightRequest="{OnPlatform Android=340, WinUI=650}"
+                StrokeShape="RoundRectangle 25, 25, 25, 25"
+                BackgroundColor="#C3D9FF"
+                Stroke="#B1D1FF"
+                StrokeThickness="3">
+        </Border>
+
+        <Button Grid.Row="0" Grid.Column="2"
+                Text="🗑️"
+                FontSize="20"
+                BackgroundColor="#C3D9FF"
+                BorderColor="#B1D1FF"
+                BorderWidth="2"
+                TextColor="#F5F5F5"
+                FontAttributes="Bold"
+                WidthRequest="{OnPlatform Android=50, WinUI=30}"
+                HeightRequest="{OnPlatform Android=50, WinUI=30}"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Padding="{OnPlatform Android=0, WinUI=5}"
+                Margin="0, 10, 10, 0"
+                Clicked="OnButtonDeleteEvent"/>
+    
+    </Grid>
     
 </ContentPage>

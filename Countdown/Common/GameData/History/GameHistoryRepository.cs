@@ -34,6 +34,12 @@ namespace Countdown.Common.GameData.History
             SerializeJSON();
         }
 
+        public void Clean()
+        {
+            _history = new List<GameRecord>();
+            SerializeJSON();
+        }
+
         private void TryDeserializeJSON()
         {
             if (!Directory.Exists(FOLDER_PATH))
@@ -43,8 +49,7 @@ namespace Countdown.Common.GameData.History
 
             if (!File.Exists(JSON_FILE_PATH))
             {
-                _history = new List<GameRecord>();
-                SerializeJSON();
+                Clean();
                 return;
             }
 

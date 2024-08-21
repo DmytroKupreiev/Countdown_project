@@ -16,12 +16,12 @@ namespace Countdown.Common.GameHistory
 
         public CollectionView Build()
         {
-            if (_source == null)
-            {
-
-            }
-
             return _collectionView;
+        }
+
+        public bool IsEmpty()
+        {
+            return _source is null || _source.Count == 0;
         }
 
         public CollectionViewBuilder SetSource(List<GameRecord> source)
