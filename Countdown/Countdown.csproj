@@ -58,6 +58,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Raw\Countdown_audio.mp3" />
+	  <None Remove="Resources\Raw\countdown_audio_60.mp4" />
+	  <None Remove="Resources\Raw\countdown_audio_90.mp4" />
 	</ItemGroup>
 
 	<ItemGroup>

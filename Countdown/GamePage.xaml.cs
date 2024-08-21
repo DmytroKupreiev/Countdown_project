@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using Countdown.Common.Dictionary;
 using Countdown.Common.GameData;
 
@@ -8,6 +9,7 @@ public partial class GamePage : ContentPage
     private GameModel _model;
     private GameView _view;
     private CountdownTimer _timer;
+    private SoundController _soundController;
 
     public GamePage(GameSettings settings,
                     GameDictionary dictionary,
@@ -18,12 +20,16 @@ public partial class GamePage : ContentPage
         _model = new GameModel(settings, dictionary, alphabet);
         _view = new GameView(this, settings);
         _timer = new CountdownTimer(settings.RoundTime);
+        _soundController = new SoundController(GetAudioByTime(settings.RoundTime));
 
         _model.OnStartTimer += _timer.Start;
         _model.OnStartTimer += _view.DisableAllButtons;
+        _model.OnStartTimer += _soundController.Start;
+
         _timer.OnTimeChanged += _view.OnChangeTimer;
         _timer.OnTimerStarted += _view.EndRoundButton;
         _timer.OnTimerFinished += RoundResultEvaluate;
+        _timer.OnTimerFinished += _soundController.Stop;
 
         _view.OnGameEntered();
     }
@@ -90,6 +96,17 @@ public partial class GamePage : ContentPage
         _view.EnableFirstPlayerButtons(false);
         _view.EnableSecondPlayerButtons(false);
         _view.ChangeGameButton("Start", "#04C4AE");
+    }
+
+    private MediaElement GetAudioByTime(int time)
+    {
+        return time switch
+        {
+            30 => Audio30,
+            60 => Audio60,
+            90 => Audio90,
+            _ => Audio30
+        };
     }
 
     protected override void OnSizeAllocated(double width, double height)
